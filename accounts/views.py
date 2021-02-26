@@ -29,6 +29,7 @@ def login_view(request):
                     print('hahhahha')
                     user = authenticate(username=User.objects.get(username=phone_number), password='1')
                     login(request, user)
+                    return render(request, "System/home.html", context)
 
 
     return render(request, "accounts/login.html", context)
