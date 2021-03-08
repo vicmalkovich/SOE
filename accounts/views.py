@@ -5,8 +5,6 @@ from .models import UserProfile
 import random
 
 
-
-
 def login_view(request):
     context = {}
     if request.method == 'POST':
@@ -29,8 +27,11 @@ def login_view(request):
                     print('hahhahha')
                     user = authenticate(username=User.objects.get(username=phone_number), password='1')
                     login(request, user)
-                    return render(request, "System/home.html", context)
+                    # return render(request, "System/home.html", context)
+                    return redirect('home/', context)
 
 
     return render(request, "accounts/login.html", context)
+
+
 
