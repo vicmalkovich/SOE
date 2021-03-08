@@ -1,0 +1,47 @@
+{% extends "/Users/victormalkovich/work/projects/System_of_expenses/app/accounts/templates/base.html" %}
+{% block title %}group create{% endblock title %}
+{% block content %}
+<h1> Добавьте друзей | Группа: {{ group.name }} </h1>
+
+{% if users %}
+  <h2>Друзья:</h2>
+  <ul>
+    {% for user in users %}
+      <li>{{ user }}
+      </li>
+
+      <td class="text-right align-middle">
+        <a href="/adding_user_to_group/{{ group.id }}/{{ user.id }}/delete/" class="btn btn-danger btn-sm">
+            Удалить
+        </a>
+      </td>
+
+    {% endfor %}
+  </ul>
+{% endif %}
+  
+  <form class="input-group mb-3" action="" method="POST">{% csrf_token %}
+    <div class="input-group-prepend">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="button-addon1">Пригласить друга</button>
+    </div>
+    
+    <input 
+        name="user_id"
+        type="text" 
+        class="username" 
+        aria-label="Example text with button addon" 
+        placeholder="Введите id друга">
+
+  </form>
+
+
+  <form class="input-group mb-3" action="/adding_user_to_group/{{ group.id }}/group_expenses/" method="POST">{% csrf_token %}
+    <div class="input-group-prepend">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="button-addon1">Создать группу</button>
+    </div>
+
+  </form>
+
+
+{% endblock %}
+
